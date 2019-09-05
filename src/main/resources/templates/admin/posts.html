@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-no-sidebar">
+
+<head>
+<title>Layout</title>
+</head>
+
+<body>
+
+ 	<div layout:fragment="content">
+		
+		<div class="allPostList" th:unless="${#lists.isEmpty(allPosts)}">
+		    
+		  <h2>Your Adventures</h2>
+		  
+		  <table>
+		    <thead>
+		      <tr>
+		        <th>Adventure</th>
+		        <th>Date Created</th>
+		        <th>Last Updated</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr th:each="p : ${allPosts}">
+		        <td th:text="${p.title}">Salina, Ks</td>
+		        <td th:text="${p.createdDate}">August 21, 2019</td>
+		        <td th:text="${p.updatedDate}">August 21, 2019</td>
+		        <td><a th:href="@{/admin/post/__${p.id}__}"><span>Edit</span></a></td>
+		        <td><a th:href="@{/admin/delete-post/__${p.id}__}"><span>Delete</span></a></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+
+	</div>
+
+</body>
+</html>

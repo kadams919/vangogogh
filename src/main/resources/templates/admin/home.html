@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<title>Van Go Gogh</title>
+</head>
+
+<body>
+
+ 	<div layout:fragment="content">
+		Hello, world traveler!
+		<div>
+			<a th:href="@{/admin/post}">Create a new story</a>
+		</div>
+		
+		<div>
+			<a th:href="@{/admin/posts}">Edit an existing adventure</a>
+		</div>	
+	</div>
+	
+</body>
+
+</html>

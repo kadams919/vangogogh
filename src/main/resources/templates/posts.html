@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-no-sidebar">
+
+<head>
+<title>Layout</title>
+</head>
+
+<body>
+
+ 	<div layout:fragment="content">
+		
+		<div class="allPostList" th:unless="${#lists.isEmpty(allPosts)}">
+		    
+		  <h2>World Travels</h2>
+		  
+			<article th:each="p : ${allPosts}">
+				<a th:href="@{/post/__${p.id}__}">
+					<h2 class="title" th:text="${p.title}">Title</h2>
+				</a>
+			   	<div class="date">
+			    	<i>Posted on</i>
+			      	<span th:text="${#dates.format(p.createdDate, 'dd-MMM-yyyy')}">August 21, 2019</span>
+			      	<span th:if="${p.user}" th:remove="tag">
+			      	<i>by</i>
+			      	<span th:text="${p.user.name}">Katie Adams</span>
+			      	</span>
+			    </div>
+				<p class="content" th:utext="${p.body}">Content</p>
+			</article>
+		</div>
+
+	</div>
+
+</body>
+</html>
