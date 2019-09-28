@@ -36,7 +36,8 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post createPost(Post post) {
-		Post newPost = Post.builder().user(post.getUser()).body(post.getBody()).title(post.getTitle()).build();
+		Post newPost = Post.builder().user(post.getUser()).body(post.getBody()).title(post.getTitle())
+				.locationAddress(post.getLocationAddress()).build();
 		return postRepository.save(newPost);
 	}
 
@@ -48,9 +49,11 @@ public class PostServiceImpl implements PostService {
 			updatedPost.setBody(post.getBody());
 			updatedPost.setTitle(post.getTitle());
 			updatedPost.setUser(post.getUser());
+			updatedPost.setLocationAddress(post.getLocationAddress());
 
 			return postRepository.save(updatedPost);
 		}
+
 		return null;
 	}
 

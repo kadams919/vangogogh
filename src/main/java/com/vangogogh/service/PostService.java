@@ -13,11 +13,8 @@ public interface PostService {
 
 	Post createPost(Post post);
 
-//	Post edit(Post post);
-
-//	void deleteById(Long id);
-
 	Post updatePost(Post post);
 
 	void deletePost(Long id);
+
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
 
 <head>
 <title>Van Go Gogh</title>
@@ -7,31 +8,42 @@
 
 <body>
 
- 	<div layout:fragment="content">
- 		<h3>The Little House from the Prairie</h3>
- 		<div class="col-12 my-5">- latest adventures -</div>
- 		
-		<main id="posts">
+	<div layout:fragment="content">
+		<h3>The Little House from the Prairie</h3>
+		<div>- latest adventures -</div>
+		<div class="container">
 			<div class="row">
-				<div class="col-12 mx-4">
-			    	<article th:each="p : ${latest5Posts}">
-				      	<a th:href="@{/post/__${p.id}__}">
-				      		<h2 class="title" th:text="${p.title}">Title</h2>
-				      	</a>
-			      	<div class="date">
-			      	  <i>Posted on</i>
-			      	  <span th:text="${#dates.format(p.createdDate, 'dd-MMM-yyyy')}">August 21, 2019</span>
-			      	  <span th:if="${p.user}" th:remove="tag">
-			      	    <i>by</i>
-			      	    <span th:text="${p.user.name}">Katie Adams</span>
-			      	  </span>
-			      	</div>
-			      	<p class="content" th:utext="${p.body}">Content</p>
-			    	</article>
-		    	</div>
-	    	</div>
+				<div class="col-12 mx-auto">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+		<main id="posts">
+		<div class="row">
+			<div class="col-12 mx-4">
+				<article th:each="p : ${latest5Posts}">
+					<a th:href="@{/post/__${p.id}__}">
+						<h2 class="title" th:text="${p.title}">Title</h2>
+					</a>
+					<div class="date">
+						<i>Posted on</i> <span
+							th:text="${#dates.format(p.createdDate, 'dd-MMM-yyyy')}">August
+							21, 2019</span> <span th:if="${p.user}" th:remove="tag"> <i>by</i>
+							<span th:text="${p.user.name}">Katie Adams</span>
+						</span>
+					</div>
+					<p class="content" th:utext="${p.body}">Content</p>
+				</article>
+			</div>
+		</div>
 		</main>
-
+		<script th:inline="javascript">
+            var addresses = /*[[${allLocations}]]*/[];
+        </script>
+		<script src="/js/allPostsMap.js"></script>
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=[KEY]&libraries=places&callback=initMap"
+			async defer></script>
 	</div>
 
 </body>

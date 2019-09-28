@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-no-sidebar">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout-no-sidebar">
 
 <head>
 <title>Layout</title>
@@ -7,29 +8,48 @@
 
 <body>
 
- 	<div layout:fragment="content">
-    	<form action="#" th:action="@{/admin/update-post/__${post.id}__}" th:object="${post}" method="post" class="form-horizontal" role="form">			
-            <h3 class="form-signin-heading" th:text="Welcome"></h3>
-			<br/>
-            <h2 class="text-center" th:text="${message}">Write new post</h2>
+	<div layout:fragment="content">
+		<form action="#" th:action="@{/admin/update-post/__${post.id}__}"
+			th:object="${post}" method="post" class="form-horizontal" role="form">
+			<h3 class="form-signin-heading" th:text="Welcome"></h3>
+			<br />
+			<h2 class="text-center" th:text="${message}">Write new post</h2>
 
-            <div class="form-group">
-            	<label th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger"></label>
-                <input type="text" th:field="*{title}" placeholder="Title" class="form-control input-lg"/>
-            </div>
+			<div class="form-group">
+				<label th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+					class="alert alert-danger"></label> <input type="text"
+					th:field="*{title}" placeholder="Title"
+					class="form-control input-lg" />
+			</div>
 
-            <div class="form-group">
-            	<label th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="alert alert-danger"></label>
-              	<textarea th:field="*{body}" placeholder="Body" class="form-control input-lg"/>
-            </div>
+			<div class="form-group">
+				<div id="locationField">
+					<input id="autocomplete" placeholder="Enter your address"
+						onFocus="geolocate()" type="text" th:field="*{locationAddress}"
+						class="form-control input-lg" />
+				</div>
+			</div>
 
-            <input type="hidden" th:field="*{user}"/>
-            <input type="hidden" th:field="*{id}" /> 
+			<div class="form-group">
+				<label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+					class="alert alert-danger"></label>
+				<textarea th:field="*{body}" placeholder="Body"
+					class="form-control input-lg" />
+			</div>
 
-            <div class="form-group">
-           		<input type="submit" class="btn btn-primary btn-block" value="Save"/>
-            </div>
+			<input type="hidden" th:field="*{user}" /> <input type="hidden"
+				th:field="*{id}" /> <input type="hidden" th:field="*{user}" /> <input
+				type="hidden" th:field="*{id}" />
+
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary btn-block" value="Save" />
+			</div>
 		</form>
+
+		<script src="/js/adminPostMap.js"></script>
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=[KEY]&libraries=places&callback=initAutocomplete"
+			async defer></script>
 
 	</div>
 

@@ -46,7 +46,7 @@ public class AdminController {
 			return "admin/post";
 		} else {
 			postService.createPost(post);
-			return "redirect:/";
+			return "redirect:/home";
 		}
 	}
 

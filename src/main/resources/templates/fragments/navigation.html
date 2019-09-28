@@ -8,35 +8,38 @@
 
 <body>
 	<nav class="navbar navbar-default" th:fragment="navigation">
-    	<div class="container">
-      		<div class="navbar-header">
-        		<button type="button" class="navbar-toggle collapsed"
-          			data-toggle="collapse" data-target="#navbarNavAltMarkup"
-          			aria-expanded="false">
-          			<span class="sr-only">Toggle navigation</span> <span
-            			class="icon-bar"></span> <span class="icon-bar"></span> <span
-            			class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="/">Van Go Gogh</a>
-      		</div>
-	
-	      	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	        	<ul class="nav navbar-nav navbar-right">
-	        		<li class="nav navbar-nav navbar-left">
-	        			<a href="/about">About</a>
-	        		</li>
-					<li class="button-group" sec:authorize="!isFullyAuthenticated()">
-				    	<a href="/login">Login</a>
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbarNavAltMarkup"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Van Go Gogh</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav navbar-nav navbar-right"
+						sec:authorize="!isFullyAuthenticated()"><a href="/about">About</a>
 					</li>
 					<li class="nav navbar-nav navbar-right" sec:authorize="!isFullyAuthenticated()">
-					    <a href="/register">Register</a>
-					</li>	
-					<li class="button-group" sec:authorize="isFullyAuthenticated()">
-					    <a href="/logout">Logout</a>
-					</li>   
-	        	</ul>
-	      	</div>
-    	</div>
-  	</nav>
+						<a href="/login">Login</a>
+					</li>
+					<li class="nav navbar-nav navbar-right"
+						sec:authorize="!isFullyAuthenticated()"><a href="/register">Register</a>
+					</li>
+					<li class="nav navbar-nav navbar-right"
+						sec:authorize="isFullyAuthenticated()"><a href="/admin">Admin</a>
+					</li>
+					<li class="nav navbar-nav navbar-right" sec:authorize="isFullyAuthenticated()">
+						<a href="/logout">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
